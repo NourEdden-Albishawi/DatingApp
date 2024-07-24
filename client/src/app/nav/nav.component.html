@@ -5,17 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active">Lists</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active">Messages</a>
-                </li>
-            </ul>
+
 
             @if (!accountService.currentUser()){
             <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex">
@@ -25,8 +15,22 @@
             </form>
             }
             @else{
-            <div  dropdown class="dropdown">
-                <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome user</a>
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a routerLink="/members" routerLinkActive="active" class="nav-link">Matches</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/lists" routerLinkActive="active" class="nav-link">Lists</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
+                </li>
+            </ul>
+            
+            <div dropdown class="dropdown">
+                <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
+                    Welcome {{accountService.currentUser()?.username}}!
+                    </a>
                 <div *dropdownMenu class="dropdown-menu">
                     <a class="dropdown-item">Edit Profile</a>
                     <div class="dropdown-divider"></div>
