@@ -17,10 +17,9 @@ export class NavComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
-
   model: any = {};
+
   login() {
-    
     this.accountService.login(this.model).subscribe({
       next: () => this.router.navigateByUrl('members'),
       error: response => this.toastr.error(response.error)
