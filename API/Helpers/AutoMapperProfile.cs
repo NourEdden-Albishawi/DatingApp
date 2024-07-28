@@ -13,6 +13,8 @@ namespace API.Helpers
                 obj => obj.MapFrom(source => source.Photos.FirstOrDefault(photo => photo.IsMain)!.Url));
             CreateMap<Photo, PhotoDto>();
             CreateMap<MemberUpdateDto, User>();
+            CreateMap<RegisterDto, User>();
+            CreateMap<string, DateOnly>().ConvertUsing(str => DateOnly.Parse(str));
         }
     }
 }
