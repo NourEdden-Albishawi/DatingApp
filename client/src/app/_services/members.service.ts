@@ -3,6 +3,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { of, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Member } from '../_models/Member';
+import { Photo } from '../_models/Photo';
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +34,19 @@ export class MembersService {
     );
   }
 
+  setMainPhoto(photo: Photo) {
+    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photo.id, {}).pipe(
+      tap(() => {
+        this.members.update(members => members.map(m => {
+          if (m.photos.includes(photo)) {
+            m.photoUrl = photo.url;
+          }
+          return m;
+        }))
+      })
+    )
+  }
+  deletePhoto(photoId: number) {
+    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+  }
 }

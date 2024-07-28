@@ -9,8 +9,8 @@
 
             @if (!accountService.currentUser()){
             <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex">
-                <input name="username" class="form-control me-2" [(ngModel)]="model.username" placeholder="Username">
-                <input class="form-control me-2" name="password" [(ngModel)]="model.password" placeholder="Password" type="password">
+                <input name="username" class="form-control me-2" [(ngModel)]="model.username" placeholder="Username" autocomplete="off">
+                <input class="form-control me-2" name="password" [(ngModel)]="model.password" placeholder="Password" type="password" autocomplete="off">
                 <button class="btn btn-outline-success" type="submit">Login </button>
             </form>
             }
@@ -31,6 +31,7 @@
             </ul>
             
             <div dropdown class="dropdown">
+                <img class="me-2" src="{{accountService.currentUser()?.photoUrl || './assets/user.png'}}" />
                 <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
                     Welcome {{accountService.currentUser()?.username}}!
                     </a>
